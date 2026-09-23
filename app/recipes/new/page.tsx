@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import ThemeToggle from '@/app/components/theme-toggle'
 
 export default function NewRecipe() {
   const router = useRouter()
@@ -68,7 +69,10 @@ export default function NewRecipe() {
 
   return (
     <main className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Add a New Recipe</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Add a New Recipe</h1>
+        <ThemeToggle />
+      </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           name="title"
@@ -76,14 +80,14 @@ export default function NewRecipe() {
           required
           value={form.title}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className="w-full border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
         />
         <textarea
           name="description"
           placeholder="Short description"
           value={form.description}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className="w-full border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
           rows={2}
         />
         <textarea
@@ -92,7 +96,7 @@ export default function NewRecipe() {
           required
           value={form.ingredients}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className="w-full border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
           rows={5}
         />
         <textarea
@@ -101,7 +105,7 @@ export default function NewRecipe() {
           required
           value={form.instructions}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className="w-full border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
           rows={5}
         />
         <div className="grid grid-cols-3 gap-2">
@@ -111,7 +115,7 @@ export default function NewRecipe() {
             placeholder="Prep (min)"
             value={form.prep_time}
             onChange={handleChange}
-            className="border rounded-lg p-2"
+            className="border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
           />
           <input
             name="cook_time"
@@ -119,7 +123,7 @@ export default function NewRecipe() {
             placeholder="Cook (min)"
             value={form.cook_time}
             onChange={handleChange}
-            className="border rounded-lg p-2"
+            className="border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
           />
           <input
             name="servings"
@@ -127,7 +131,7 @@ export default function NewRecipe() {
             placeholder="Servings"
             value={form.servings}
             onChange={handleChange}
-            className="border rounded-lg p-2"
+            className="border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
           />
         </div>
         <input
@@ -135,7 +139,7 @@ export default function NewRecipe() {
           placeholder="Category (e.g. Dessert, Breakfast)"
           value={form.category}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className="w-full border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
         />
 <input
   type="file"

@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { Recipe } from '@/lib/types'
+import ThemeToggle from '@/app/components/theme-toggle'
 
 export default function RecipeDetail() {
   const { id } = useParams<{ id: string }>()
@@ -36,9 +37,12 @@ export default function RecipeDetail() {
 
   return (
     <main className="max-w-2xl mx-auto p-6">
-      <Link href="/" className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer">
-        ← Back
-      </Link>
+      <div className="flex justify-between items-center">
+        <Link href="/" className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer">
+          ← Back
+        </Link>
+        <ThemeToggle />
+      </div>
 
       {recipe.image_url && (
         <img
@@ -49,9 +53,9 @@ export default function RecipeDetail() {
       )}
 
       <h1 className="text-3xl font-bold mt-4">{recipe.title}</h1>
-      <p className="text-gray-600 mt-1">{recipe.description}</p>
+      <p className="text-gray-600 dark:text-gray-400 mt-1">{recipe.description}</p>
 
-      <div className="flex gap-4 text-sm text-gray-500 mt-3">
+      <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mt-3">
         {recipe.prep_time && <span>⏱ Prep: {recipe.prep_time} min</span>}
         {recipe.cook_time && <span>🔥 Cook: {recipe.cook_time} min</span>}
         {recipe.servings && <span>🍽 Serves: {recipe.servings}</span>}
@@ -70,7 +74,7 @@ export default function RecipeDetail() {
       <div className="flex gap-3 mt-8">
         <Link
           href={`/recipes/${id}/edit`}
-          className="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 cursor-pointer"
+          className="bg-gray-200 text-black px-4 py-2 rounded-lg hover:bg-gray-300 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 cursor-pointer"
         >
           Edit
         </Link>

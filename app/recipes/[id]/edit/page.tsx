@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import ThemeToggle from '@/app/components/theme-toggle'
 
 export default function EditRecipe() {
   const { id } = useParams<{ id: string }>()
@@ -78,22 +79,30 @@ export default function EditRecipe() {
 
   if (loading) return <p className="p-6">Loading...</p>
 
+  const inputClass =
+    "w-full border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
+  const numberClass =
+    "border rounded-lg p-2 bg-white text-black dark:bg-gray-900 dark:text-white dark:border-gray-700"
+
   return (
     <main className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Edit Recipe</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Edit Recipe</h1>
+        <ThemeToggle />
+      </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           name="title"
           required
           value={form.title}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className={inputClass}
         />
         <textarea
           name="description"
           value={form.description}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className={inputClass}
           rows={2}
         />
         <textarea
@@ -101,7 +110,7 @@ export default function EditRecipe() {
           required
           value={form.ingredients}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className={inputClass}
           rows={5}
         />
         <textarea
@@ -109,7 +118,7 @@ export default function EditRecipe() {
           required
           value={form.instructions}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className={inputClass}
           rows={5}
         />
         <div className="grid grid-cols-3 gap-2">
@@ -118,28 +127,28 @@ export default function EditRecipe() {
             type="number"
             value={form.prep_time}
             onChange={handleChange}
-            className="border rounded-lg p-2"
+            className={numberClass}
           />
           <input
             name="cook_time"
             type="number"
             value={form.cook_time}
             onChange={handleChange}
-            className="border rounded-lg p-2"
+            className={numberClass}
           />
           <input
             name="servings"
             type="number"
             value={form.servings}
             onChange={handleChange}
-            className="border rounded-lg p-2"
+            className={numberClass}
           />
         </div>
         <input
           name="category"
           value={form.category}
           onChange={handleChange}
-          className="w-full border rounded-lg p-2"
+          className={inputClass}
         />
         <button
           type="submit"
